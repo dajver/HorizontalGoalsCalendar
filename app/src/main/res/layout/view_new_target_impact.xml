@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_with_shadow"
+        android:layout_gravity="center_horizontal">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAllCaps="true"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/task.new.target.impact"
+                android:id="@+id/textView26"
+                android:textIsSelectable="false"
+                android:singleLine="true" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/impactionQuestion"
+                    android:src="@mipmap/question_grey" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/radioGroup"
+            android:padding="10dp">
+
+            <RadioButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/circle.specific"
+                android:id="@+id/personalRadio"
+                android:button="@drawable/checkbox_selector"
+                android:padding="10dp"
+                android:checked="true" />
+
+            <RadioButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/circle.health"
+                android:id="@+id/healthRadio"
+                android:button="@drawable/checkbox_selector"
+                android:padding="10dp" />
+
+            <RadioButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/circle.friends"
+                android:id="@+id/friendsRadio"
+                android:button="@drawable/checkbox_selector"
+                android:padding="10dp" />
+
+            <RadioButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/circle.relationships"
+                android:id="@+id/relationRadio"
+                android:button="@drawable/checkbox_selector"
+                android:padding="10dp" />
+
+            <RadioButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/circle.bright"
+                android:id="@+id/brightRadio"
+                android:button="@drawable/checkbox_selector"
+                android:padding="10dp" />
+
+            <RadioButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/circle.creation"
+                android:id="@+id/creationRadio"
+                android:button="@drawable/checkbox_selector"
+                android:padding="10dp" />
+
+            <RadioButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/circle.carier"
+                android:id="@+id/carierRadio"
+                android:button="@drawable/checkbox_selector"
+                android:padding="10dp" />
+
+            <RadioButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/circle.money"
+                android:id="@+id/moneyRadio"
+                android:button="@drawable/checkbox_selector"
+                android:padding="10dp" />
+        </RadioGroup>
+    </LinearLayout>
+</LinearLayout>
