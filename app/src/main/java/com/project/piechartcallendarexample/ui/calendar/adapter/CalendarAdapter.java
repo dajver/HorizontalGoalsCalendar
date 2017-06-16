@@ -44,7 +44,6 @@ public class CalendarAdapter extends BaseAdapter {
 
     private OnClickCallback onClickCallback;
 
-    private String dafOfWeek;
     private int datePosition = 0;
 
     public CalendarAdapter(Context context) {
@@ -52,36 +51,26 @@ public class CalendarAdapter extends BaseAdapter {
         taskController = new TaskController(context);
     }
 
-    public CalendarAdapter setItem(ArrayList<RealmTaskModel> articleResultModels) {
+    public void setItem(ArrayList<RealmTaskModel> articleResultModels) {
         this.listData = articleResultModels;
         notifyDataSetChanged();
-        return this;
     }
 
-    public CalendarAdapter setCalendarDated(ArrayList<CalendarModel> calendarDated) {
+    public void setCalendarDated(ArrayList<CalendarModel> calendarDated) {
         this.getDatesInView = calendarDated;
         notifyDataSetChanged();
-        return this;
     }
 
-    public CalendarAdapter setCalendar(Calendar calendar) {
+    public void setCalendar(Calendar calendar) {
         this.calendar = calendar;
-        return this;
-    }
-
-    public CalendarAdapter setDayOfWeek(String dafOfWeek) {
-        this.dafOfWeek = dafOfWeek;
-        notifyDataSetChanged();
-        return this;
     }
 
     @Override
     public int getItemViewType(int position) {
-        if(position == 0) {
+        if(position == 0)
             return TYPE_HEAD;
-        } else {
+        else
             return TYPE_ITEM;
-        }
     }
 
     @Override

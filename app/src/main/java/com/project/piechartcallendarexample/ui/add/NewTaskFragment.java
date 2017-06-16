@@ -4,50 +4,72 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.text.format.Time;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.project.piechartcallendarexample.R;
 import com.project.piechartcallendarexample.etc.RandomUtils;
+import com.project.piechartcallendarexample.ui.BaseFragment;
+import com.project.piechartcallendarexample.ui.add.view.SchletudeViews;
 import com.project.piechartcallendarexample.ui.calendar.db.TaskController;
 import com.project.piechartcallendarexample.ui.calendar.db.model.RealmTaskHistoryModel;
 import com.project.piechartcallendarexample.ui.calendar.db.model.RealmTaskModel;
 
+import org.joda.time.DateTime;
+import org.joda.time.Duration;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
 import java.util.Calendar;
 
+import butterknife.BindColor;
+import butterknife.BindView;
 import io.realm.RealmList;
 
 /**
  * Created by gleb on 6/16/17.
  */
 
-public class NewTaskFragment extends BaseNewTaskFragment implements View.OnClickListener {
+public class NewTaskFragment extends BaseFragment {
 
     public static final int WITHOUD_DEADLINE = 5475;
+    public static final int START_DATE = 0;
+
+    @BindView(R.id.schletudeView)
+    public SchletudeViews schletudeViews;
+    @BindView(R.id.target)
+    public EditText target;
+
+    @BindColor(R.color.colorPrimary)
+    int blueColor;
+    @BindColor(R.color.dark_gray_text)
+    int grayColor;
 
     private RealmTaskModel realmTaskModel;
     private RealmList<RealmTaskHistoryModel> taskHistoryModels;
+    public TaskController taskController;
+
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        taskController = new TaskController(context);
+    }
+
+    @Override
+    public int getViewId() {
+        return R.layout.fragment_add_task;
+    }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        setRepeatSpinnerAdapter();
 
         taskHistoryModels = new RealmList<>();
         realmTaskModel = new RealmTaskModel();
-
-        schletudeViews.getWeeksView().getMonBtn().setOnClickListener(this);
-        schletudeViews.getWeeksView().getThuBtn().setOnClickListener(this);
-        schletudeViews.getWeeksView().getWedBtn().setOnClickListener(this);
-        schletudeViews.getWeeksView().getThurBtn().setOnClickListener(this);
-        schletudeViews.getWeeksView().getFrBtn().setOnClickListener(this);
-        schletudeViews.getWeeksView().getSutBtn().setOnClickListener(this);
-        schletudeViews.getWeeksView().getSunBtn().setOnClickListener(this);
-        schletudeViews.getSchletudeQuestion().setOnClickListener(this);
-        schletudeViews.getWithoutDeadLine().setOnClickListener(this);
     }
 
     @Override
@@ -60,15 +82,15 @@ public class NewTaskFragment extends BaseNewTaskFragment implements View.OnClick
                 realmTaskModel.setTitle(target.getText().toString());
                 realmTaskModel.setDateStart(getDate(START_DATE));
                 realmTaskModel.setDateFinish(getDate(daysBetweenDates(deadlineValue)));
-                realmTaskModel.setCountDays(withoutDeadline ? WITHOUD_DEADLINE : deadlineValue);
-                realmTaskModel.setCountRepeats(repeatValue);
-                realmTaskModel.setMonday(monday);
-                realmTaskModel.setThuesday(tuesday);
-                realmTaskModel.setWednessday(wednesday);
-                realmTaskModel.setThuersday(thursday);
-                realmTaskModel.setFriday(friday);
-                realmTaskModel.setSuthurday(saturday);
-                realmTaskModel.setSunday(sunday);
+                realmTaskModel.setCountDays(schletudeViews.isWithoutDeadline() ? WITHOUD_DEADLINE : deadlineValue);
+                realmTaskModel.setCountRepeats(schletudeViews.getRepeatValue());
+                realmTaskModel.setMonday(schletudeViews.isMonday());
+                realmTaskModel.setThuesday(schletudeViews.isTuesday());
+                realmTaskModel.setWednessday(schletudeViews.isWednesday());
+                realmTaskModel.setThuersday(schletudeViews.isThursday());
+                realmTaskModel.setFriday(schletudeViews.isFriday());
+                realmTaskModel.setSuthurday(schletudeViews.isSaturday());
+                realmTaskModel.setSunday(schletudeViews.isSunday());
                 Calendar calendar = Calendar.getInstance();
                 calendar.add(Calendar.DATE, -1);
                 for(int i = 0; i < daysBetweenDates(deadlineValue); i++) {
@@ -80,7 +102,13 @@ public class NewTaskFragment extends BaseNewTaskFragment implements View.OnClick
                 }
                 realmTaskModel.setRealmTaskHistoryModels(taskHistoryModels);
 
-                if (monday || tuesday || wednesday || thursday || friday || saturday || sunday)
+                if (schletudeViews.isMonday() ||
+                        schletudeViews.isTuesday() ||
+                        schletudeViews.isWednesday() ||
+                        schletudeViews.isThursday() ||
+                        schletudeViews.isFriday() ||
+                        schletudeViews.isSaturday() ||
+                        schletudeViews.isSunday())
                     new InsertDataAboutTask().execute();
                 else
                     Toast.makeText(context, getString(R.string.task_new_target_toast_error), Toast.LENGTH_LONG).show();
@@ -90,28 +118,31 @@ public class NewTaskFragment extends BaseNewTaskFragment implements View.OnClick
         }
     }
 
+    public String getDate(int daysCount) {
+        Time time = new Time();
+        Calendar now = Calendar.getInstance();
+        if(daysCount == START_DATE) {
+            time.set(now.get(Calendar.DATE), now.get(Calendar.MONTH), now.get(Calendar.YEAR));
+        } else {
+            now.add(Calendar.DATE, daysCount);
+            time.set(now.get(Calendar.DATE), now.get(Calendar.MONTH), now.get(Calendar.YEAR));
+        }
+        return time.format("%d %m %Y");
+    }
+
+    public int daysBetweenDates(int daysCount) {
+        DateTimeFormatter formatter = DateTimeFormat.forPattern("dd MM yyyy");
+        DateTime d1 = formatter.parseDateTime(getDate(START_DATE));
+        DateTime d2 = formatter.parseDateTime(getDate(daysCount));
+        Duration duration = new Duration(d1, d2);
+        int days = (int)duration.getStandardDays();
+        return days;
+    }
+
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_add, menu);
         super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.monBtn:
-            case R.id.thuBtn:
-            case R.id.wedBtn:
-            case R.id.thurBtn:
-            case R.id.frBtn:
-            case R.id.surthBtn:
-            case R.id.sunBtn:
-                onWeekChecked(v);
-                break;
-            case R.id.withoutDeadLine:
-                onWithoutDeadlineChecked(v);
-                break;
-        }
     }
 
     private class InsertDataAboutTask extends AsyncTask<Void, Void, Void> {

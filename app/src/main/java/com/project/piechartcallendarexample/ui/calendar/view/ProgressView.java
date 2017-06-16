@@ -28,10 +28,12 @@ public class ProgressView extends View {
     private final Paint mPaintStroke = new Paint();
     private final Paint mPaintBackground = new Paint();
     private final Paint mPaintErase = new Paint();
+
     private static final Xfermode PORTER_DUFF_CLEAR = new PorterDuffXfermode(PorterDuff.Mode.CLEAR);
     private int mColorForeground = Color.WHITE;
     private int mColorStroke = Color.WHITE;
     private int mColorBackground = Color.BLACK;
+
     private float mValue = -1f;
     private static final float PADDING = 4;
     private float mPadding;
