@@ -22,6 +22,7 @@ import org.joda.time.format.DateTimeFormatter;
 
 import java.util.Calendar;
 
+import butterknife.BindColor;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -33,28 +34,27 @@ public class BaseNewTaskFragment extends BaseFragment {
 
     public static final int START_DATE = 0;
 
-    public static final int SCHLETUDE_TYPE_FIXED = 0;
-    public static final int SCHLETUDE_TYPE_FLOAT = 1;
-
     public boolean monday;
-    public boolean thuesday;
-    public boolean wednesdey;
+    public boolean tuesday;
+    public boolean wednesday;
     public boolean thursday;
     public boolean friday;
-    public boolean suthurday;
+    public boolean saturday;
     public boolean sunday;
 
     public boolean withoutDeadline;
 
-    public int onceWeekOrMonth;
     public int repeatValue;
-    public int quanlityValue;
-    public View view;;
 
     @BindView(R.id.schletudeView)
     public SchletudeViews schletudeViews;
     @BindView(R.id.target)
     public EditText target;
+
+    @BindColor(R.color.colorPrimary)
+    int blueColor;
+    @BindColor(R.color.dark_gray_text)
+    int grayColor;
 
     public TaskController taskController;
 
@@ -62,12 +62,11 @@ public class BaseNewTaskFragment extends BaseFragment {
         super.onCreate(savedInstanceState);
         taskController = new TaskController(context);
         repeatValue = Integer.valueOf(getResources().getStringArray(R.array.task_repeats)[0]);
-        onceWeekOrMonth = 0;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_add_task, container, false);
+        View view = inflater.inflate(R.layout.fragment_add_task, container, false);
         ButterKnife.bind(this, view);
         setHasOptionsMenu(true);
         return view;
@@ -91,79 +90,48 @@ public class BaseNewTaskFragment extends BaseFragment {
     public void onWeekChecked(View v) {
         switch(v.getId()) {
             case R.id.monBtn:
-                if(!monday) {
-                    ((TextView) v).setTextColor(getResources().getColor(R.color.colorPrimary));
-                    monday = true;
-                } else {
-                    ((TextView) v).setTextColor(getResources().getColor(R.color.dark_gray_text));
-                    monday = false;
-                }
+                monday = selectDayOfWeek(v, monday);
                 break;
             case R.id.thuBtn:
-                if(!thuesday) {
-                    ((TextView) v).setTextColor(getResources().getColor(R.color.colorPrimary));
-                    thuesday = true;
-                } else {
-                    ((TextView) v).setTextColor(getResources().getColor(R.color.dark_gray_text));
-                    thuesday = false;
-                }
+                tuesday = selectDayOfWeek(v, tuesday);
                 break;
             case R.id.wedBtn:
-                if(!wednesdey) {
-                    ((TextView) v).setTextColor(getResources().getColor(R.color.colorPrimary));
-                    wednesdey = true;
-                } else {
-                    ((TextView) v).setTextColor(getResources().getColor(R.color.dark_gray_text));
-                    wednesdey = false;
-                }
+                wednesday = selectDayOfWeek(v, wednesday);
                 break;
             case R.id.thurBtn:
-                if(!thursday) {
-                    ((TextView) v).setTextColor(getResources().getColor(R.color.colorPrimary));
-                    thursday = true;
-                } else {
-                    ((TextView) v).setTextColor(getResources().getColor(R.color.dark_gray_text));
-                    thursday = false;
-                }
+                thursday = selectDayOfWeek(v, thursday);
                 break;
             case R.id.frBtn:
-                if(!friday) {
-                    ((TextView) v).setTextColor(getResources().getColor(R.color.colorPrimary));
-                    friday = true;
-                } else {
-                    ((TextView) v).setTextColor(getResources().getColor(R.color.dark_gray_text));
-                    friday = false;
-                }
+                friday = selectDayOfWeek(v, friday);
                 break;
             case R.id.surthBtn:
-                if(!suthurday) {
-                    ((TextView) v).setTextColor(getResources().getColor(R.color.colorPrimary));
-                    suthurday = true;
-                } else {
-                    ((TextView) v).setTextColor(getResources().getColor(R.color.dark_gray_text));
-                    suthurday = false;
-                }
+                saturday = selectDayOfWeek(v, saturday);
                 break;
             case R.id.sunBtn:
-                if(!sunday) {
-                    ((TextView) v).setTextColor(getResources().getColor(R.color.colorPrimary));
-                    sunday = true;
-                } else {
-                    ((TextView) v).setTextColor(getResources().getColor(R.color.dark_gray_text));
-                    sunday = false;
-                }
+                sunday = selectDayOfWeek(v, sunday);
                 break;
         }
+    }
+
+    private boolean selectDayOfWeek(View v, boolean day) {
+        if(!day) {
+            ((TextView) v).setTextColor(blueColor);
+            day = true;
+        } else {
+            ((TextView) v).setTextColor(grayColor);
+            day = false;
+        }
+        return day;
     }
 
     public void onWithoutDeadlineChecked(View v) {
         if(v.getId() == R.id.withoutDeadLine) {
             if(!withoutDeadline) {
-                ((TextView) v).setTextColor(getResources().getColor(R.color.colorPrimary));
+                ((TextView) v).setTextColor(blueColor);
                 schletudeViews.getDeadline().setEnabled(false);
                 withoutDeadline = true;
             } else {
-                ((TextView) v).setTextColor(getResources().getColor(R.color.dark_gray_text));
+                ((TextView) v).setTextColor(grayColor);
                 schletudeViews.getDeadline().setEnabled(true);
                 withoutDeadline = false;
             }

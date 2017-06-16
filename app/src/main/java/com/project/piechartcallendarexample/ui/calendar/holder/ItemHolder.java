@@ -1,8 +1,6 @@
 package com.project.piechartcallendarexample.ui.calendar.holder;
 
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.project.piechartcallendarexample.R;
@@ -20,10 +18,6 @@ public class ItemHolder {
     public TextView title;
     @BindView(R.id.days)
     public TextView days;
-    @BindView(R.id.daysCount)
-    public TextView daysCount;
-    @BindView(R.id.dayCountLayout)
-    public RelativeLayout dayCountLayout;
 
     @BindView(R.id.progresBar)
     public ProgressView progressView;
@@ -54,23 +48,6 @@ public class ItemHolder {
     public TextView repeatSixth;
     @BindView(R.id.repeatSeventh)
     public TextView repeatSeventh;
-
-    @BindView(R.id.monLayout)
-    public LinearLayout monLayout;
-    @BindView(R.id.thuLayout)
-    public LinearLayout thuLayout;
-    @BindView(R.id.wedLayout)
-    public LinearLayout wedLayout;
-    @BindView(R.id.thusLayout)
-    public LinearLayout thusLayout;
-    @BindView(R.id.frLayout)
-    public LinearLayout frLayout;
-    @BindView(R.id.sutLayout)
-    public LinearLayout sutLayout;
-    @BindView(R.id.sunLayout)
-    public LinearLayout sunLayout;
-    @BindView(R.id.nameLayout)
-    public LinearLayout nameLayout;
 
     public ItemHolder(View view){
         ButterKnife.bind(this, view);

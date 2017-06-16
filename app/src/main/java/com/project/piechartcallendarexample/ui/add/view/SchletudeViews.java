@@ -4,7 +4,6 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -18,9 +17,6 @@ import butterknife.ButterKnife;
  */
 
 public class SchletudeViews extends LinearLayout {
-
-    @BindView(R.id.fixedRadio)
-    RadioButton fixedRadio;
 
     @BindView(R.id.weeksView)
     WeeksView weeksView;
@@ -54,10 +50,6 @@ public class SchletudeViews extends LinearLayout {
         inflate(context, R.layout.view_new_target_shletude, this);
         setOrientation(VERTICAL);
         ButterKnife.bind(this);
-    }
-
-    public RadioButton getFixedRadio() {
-        return fixedRadio;
     }
 
     public WeeksView getWeeksView() {

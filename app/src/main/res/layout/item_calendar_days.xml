@@ -30,14 +30,13 @@
 
             <com.project.piechartcallendarexample.ui.calendar.view.CapFirstLetterTextView
                 android:id="@+id/currentMonth"
-                android:textAppearance="?android:attr/textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.1"
-                android:textColor="@color/white"
-                android:text="ffdg"
-                android:gravity="center_horizontal">
-            </com.project.piechartcallendarexample.ui.calendar.view.CapFirstLetterTextView>
+                android:gravity="center_horizontal"
+                android:text="date"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/white"></com.project.piechartcallendarexample.ui.calendar.view.CapFirstLetterTextView>
 
             <ImageView
                 android:id="@+id/nextMonth"

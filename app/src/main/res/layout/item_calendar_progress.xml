@@ -20,32 +20,6 @@
             android:id="@+id/nameLayout"
             android:gravity="center_vertical">
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:id="@+id/dayCountLayout">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/imageView9"
-                    android:src="@mipmap/round_green"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="44"
-                    android:id="@+id/daysCount"
-                    android:textSize="11sp"
-                    android:layout_centerVertical="true"
-                    android:layout_centerHorizontal="true"
-                    android:textColor="@color/circle.fifth.color" />
-            </RelativeLayout>
-
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
@@ -53,20 +27,20 @@
                 android:layout_marginLeft="5dp">
 
                 <TextView
+                    android:id="@+id/title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:singleLine="true"
                     android:text="Large Text"
-                    android:id="@+id/title"
-                    android:singleLine="true" />
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <TextView
+                    android:id="@+id/days"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:singleLine="true"
                     android:text="Small Text"
-                    android:id="@+id/days"
-                    android:singleLine="true" />
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
 
             </LinearLayout>
         </LinearLayout>

@@ -8,7 +8,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.CompoundButton;
+import android.widget.Toast;
 
 import com.project.piechartcallendarexample.R;
 import com.project.piechartcallendarexample.etc.RandomUtils;
@@ -24,7 +24,7 @@ import io.realm.RealmList;
  * Created by gleb on 6/16/17.
  */
 
-public class NewTaskFragment extends BaseNewTaskFragment implements CompoundButton.OnCheckedChangeListener, View.OnClickListener {
+public class NewTaskFragment extends BaseNewTaskFragment implements View.OnClickListener {
 
     public static final int WITHOUD_DEADLINE = 5475;
 
@@ -38,8 +38,6 @@ public class NewTaskFragment extends BaseNewTaskFragment implements CompoundButt
 
         taskHistoryModels = new RealmList<>();
         realmTaskModel = new RealmTaskModel();
-
-        schletudeViews.getFixedRadio().setOnCheckedChangeListener(this);
 
         schletudeViews.getWeeksView().getMonBtn().setOnClickListener(this);
         schletudeViews.getWeeksView().getThuBtn().setOnClickListener(this);
@@ -64,16 +62,13 @@ public class NewTaskFragment extends BaseNewTaskFragment implements CompoundButt
                 realmTaskModel.setDateFinish(getDate(daysBetweenDates(deadlineValue)));
                 realmTaskModel.setCountDays(withoutDeadline ? WITHOUD_DEADLINE : deadlineValue);
                 realmTaskModel.setCountRepeats(repeatValue);
-                realmTaskModel.setQuanlityValue(quanlityValue);
-                realmTaskModel.setOnceOnWeekOrMonth(onceWeekOrMonth);
-                realmTaskModel.setSchletudeType(schletudeViews.getFixedRadio().isChecked() ? SCHLETUDE_TYPE_FIXED : SCHLETUDE_TYPE_FLOAT);
-                realmTaskModel.setMonday(schletudeViews.getFixedRadio().isChecked() ? monday : true);
-                realmTaskModel.setThuesday(schletudeViews.getFixedRadio().isChecked() ? thuesday : true);
-                realmTaskModel.setWednessday(schletudeViews.getFixedRadio().isChecked() ? wednesdey : true);
-                realmTaskModel.setThuersday(schletudeViews.getFixedRadio().isChecked() ? thursday : true);
-                realmTaskModel.setFriday(schletudeViews.getFixedRadio().isChecked() ? friday : true);
-                realmTaskModel.setSuthurday(schletudeViews.getFixedRadio().isChecked() ? suthurday : true);
-                realmTaskModel.setSunday(schletudeViews.getFixedRadio().isChecked() ? sunday : true);
+                realmTaskModel.setMonday(monday);
+                realmTaskModel.setThuesday(tuesday);
+                realmTaskModel.setWednessday(wednesday);
+                realmTaskModel.setThuersday(thursday);
+                realmTaskModel.setFriday(friday);
+                realmTaskModel.setSuthurday(saturday);
+                realmTaskModel.setSunday(sunday);
                 Calendar calendar = Calendar.getInstance();
                 calendar.add(Calendar.DATE, -1);
                 for(int i = 0; i < daysBetweenDates(deadlineValue); i++) {
@@ -85,10 +80,10 @@ public class NewTaskFragment extends BaseNewTaskFragment implements CompoundButt
                 }
                 realmTaskModel.setRealmTaskHistoryModels(taskHistoryModels);
 
-                if(schletudeViews.getFixedRadio().isChecked()) {
-                    if (monday || thuesday || wednesdey || thursday || friday || suthurday || sunday)
-                        new InsertDataAboutTask().execute();
-                }
+                if (monday || tuesday || wednesday || thursday || friday || saturday || sunday)
+                    new InsertDataAboutTask().execute();
+                else
+                    Toast.makeText(context, getString(R.string.task_new_target_toast_error), Toast.LENGTH_LONG).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -99,15 +94,6 @@ public class NewTaskFragment extends BaseNewTaskFragment implements CompoundButt
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_add, menu);
         super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    @Override
-    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        switch(buttonView.getId()) {
-            case R.id.fixedRadio:
-                schletudeViews.getFixedRadio().setChecked(isChecked);
-                break;
-        }
     }
 
     @Override

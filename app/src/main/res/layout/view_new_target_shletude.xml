@@ -48,16 +48,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/task.new.target.fixed"
-                    android:id="@+id/fixedRadio"
-                    android:textColor="@color/dark.gray.text"
-                    android:button="@drawable/radio_selector"
-                    android:paddingLeft="5dp"
-                    android:checked="true" />
-
                 <com.project.piechartcallendarexample.ui.add.view.WeeksView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

@@ -1,42 +1,23 @@
 <resources>
     <string name="app_name">Calendar</string>
 
-    <string name="task.new.target.mon">ПН</string>
-    <string name="task.new.target.thu">ВТ</string>
-    <string name="task.new.target.wen">СР</string>
-    <string name="task.new.target.sut">ЧТ</string>
-    <string name="task.new.target.fr">ПТ</string>
-    <string name="task.new.target.surth">СБ</string>
-    <string name="task.new.target.sun">ВС</string>
+    <string name="task.new.target.mon">MON</string>
+    <string name="task.new.target.thu">TUE</string>
+    <string name="task.new.target.wen">WED</string>
+    <string name="task.new.target.sut">THU</string>
+    <string name="task.new.target.fr">FRI</string>
+    <string name="task.new.target.surth">SAT</string>
+    <string name="task.new.target.sun">SUN</string>
 
-    <string name="task.new.target.shletude">Расписание</string>
-    <string name="task.new.target.fixed">Фиксированное</string>
-    <string name="task.new.target.float">Плавающее</string>
-    <string name="task.new.target.repeat">Повторений</string>
-    <string name="task.new.target.each.time">раз в</string>
-    <string name="task.new.target.each.dat">раз в день</string>
-    <string name="task.new.target.deadline">Срок</string>
-    <string name="task.new.target.days">дней</string>
-    <string name="task.new.target.without.deadline">Без срока</string>
-    <string name="task.new.target.remind">Напоминание</string>
-    <string name="task.new.target.main.photo">Главная фотография</string>
-    <string name="task.new.target.description">Описание задачи</string>
-    <string name="task.new.target.add.file">Прикрепить файл</string>
-    <string name="task.remove.reached">Скрыть достигнутые</string>
-    <string name="task.image">Путь не указан</string>
+    <string name="task.new.target.shletude">Schedule</string>
+    <string name="task.new.target.repeat">Repeats</string>
+    <string name="task.new.target.each.dat">a day</string>
+    <string name="task.new.target.deadline">Terms</string>
+    <string name="task.new.target.days">days</string>
+    <string name="task.new.target.without.deadline">Without terms</string>
+    <string name="task.new.target.toast.error">Chose please any day from list above.</string>
 
-    <string name="task.details.times.day" formatted="false">%s раз в день, в течении %s дней</string>
-
-    <string name="task.new.target.impact">Влияние на ось колеса жизни</string>
-
-    <string name="circle.specific">Личностный рост</string>
-    <string name="circle.bright">Яркость жизни</string>
-    <string name="circle.money">Деньги</string>
-    <string name="circle.carier">Карьера и бизнес</string>
-    <string name="circle.creation">Творчество</string>
-    <string name="circle.friends">Друзья и окружение</string>
-    <string name="circle.health">Здоровье и спорт</string>
-    <string name="circle.relationships">Отношения</string>
+    <string name="task.details.times.day" formatted="false">%s times a day, during %s days</string>
 
     <string-array name="task_repeats">
         <item>1</item>
@@ -49,20 +30,6 @@
         <item>8</item>
         <item>9</item>
         <item>10</item>
-    </string-array>
-
-    <string-array name="task_float">
-        <item>неделю</item>
-        <item>месяц</item>
-    </string-array>
-
-    <string-array name="task_quanlity">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
     </string-array>
 
 </resources>
