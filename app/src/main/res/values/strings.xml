@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">PieChartCallendarExample</string>
+    <string name="app_name">Calendar</string>
 
     <string name="task.new.target.mon">ПН</string>
     <string name="task.new.target.thu">ВТ</string>
