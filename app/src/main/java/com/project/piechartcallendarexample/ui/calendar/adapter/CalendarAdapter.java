@@ -29,22 +29,23 @@ public class CalendarAdapter extends BaseAdapter {
 
     private static final int TYPE_HEAD = 0;
     private static final int TYPE_ITEM = 1;
+    private static final String DATE_TEMPLATE = "MMMM \nyyyy";
 
-    private final DateFormat dateFormatter = new DateFormat();
-    private static final String dateTemplate = "MMMM \nyyyy";
 
     private HeaderHolder headHolder;
     private ItemHolder itemHolder;
+
     private TaskController taskController;
-
-    private Context context;
-    private ArrayList<RealmTaskModel> listData = new ArrayList<>();
-    private ArrayList<CalendarModel> getDatesInView;
-    private Calendar calendar;
-
     private OnClickCallback onClickCallback;
+    private DateFormat dateFormatter = new DateFormat();
 
     private int datePosition = 0;
+
+    private Context context;
+    private Calendar calendar;
+
+    private ArrayList<RealmTaskModel> listData = new ArrayList<>();
+    private ArrayList<CalendarModel> getDatesInView;
 
     public CalendarAdapter(Context context) {
         this.context = context;
@@ -63,6 +64,7 @@ public class CalendarAdapter extends BaseAdapter {
 
     public void setCalendar(Calendar calendar) {
         this.calendar = calendar;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -103,7 +105,7 @@ public class CalendarAdapter extends BaseAdapter {
                 convertView = inflater.inflate(R.layout.item_calendar_days, parent, false);
                 headHolder = new HeaderHolder(convertView);
 
-                headHolder.currentMonth.setFirstCupText(dateFormatter.format(dateTemplate, calendar.getTime()));
+                headHolder.currentMonth.setFirstCupText(dateFormatter.format(DATE_TEMPLATE, calendar.getTime()));
 
                 headHolder.mondayTw.setText(String.valueOf(getDatesInView.get(0).getDay()));
                 headHolder.thusdayTw.setText(String.valueOf(getDatesInView.get(1).getDay()));
@@ -131,21 +133,9 @@ public class CalendarAdapter extends BaseAdapter {
                 headHolder.prevMonth.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if(getItem(1) != null) {
-                            String firstDate = "";
-                            if(getItem(1).getRealmTaskHistoryModels().size() > 0) {
-                                firstDate = getItem(1).getRealmTaskHistoryModels().get(0).getDate();
-                            }
-
-                            if(!compareDates(firstDate, getFullDate(0)) || !compareDates(firstDate, getFullDate(1)) ||
-                                    !compareDates(firstDate, getFullDate(2)) || !compareDates(firstDate, getFullDate(3)) ||
-                                    !compareDates(firstDate, getFullDate(4)) || !compareDates(firstDate, getFullDate(5)) ||
-                                    !compareDates(firstDate, getFullDate(6))) {
-                                if (datePosition > 0)
-                                    datePosition -= 7;
-                                onClickCallback.onPrevClick();
-                            }
-                        }
+                        if (datePosition > 0)
+                            datePosition -= 7;
+                        onClickCallback.onPrevClick();
                     }
                 });
                 headHolder.currentMonth.setOnClickListener(new View.OnClickListener() {

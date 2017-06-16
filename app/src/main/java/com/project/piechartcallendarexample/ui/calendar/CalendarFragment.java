@@ -38,16 +38,17 @@ public class CalendarFragment extends BaseFragment implements CalendarAdapter.On
     public CalendarAdapter calendarAdapter;
     public Calendar current;
 
+    @Override
+    public int getViewId() {
+        return R.layout.fragment_calendar;
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         taskController = new TaskController(context);
         current = Calendar.getInstance();
         current.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
-    }
-
-    @Override
-    public int getViewId() {
-        return R.layout.fragment_calendar;
     }
 
     @Override

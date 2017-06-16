@@ -54,20 +54,20 @@ public class NewTaskFragment extends BaseFragment {
     private RealmList<RealmTaskHistoryModel> taskHistoryModels;
     public TaskController taskController;
 
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        taskController = new TaskController(context);
-    }
-
     @Override
     public int getViewId() {
         return R.layout.fragment_add_task;
     }
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        taskController = new TaskController(context);
+    }
+
+    @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         taskHistoryModels = new RealmList<>();
         realmTaskModel = new RealmTaskModel();
     }
@@ -91,6 +91,7 @@ public class NewTaskFragment extends BaseFragment {
                 realmTaskModel.setFriday(schletudeViews.isFriday());
                 realmTaskModel.setSuthurday(schletudeViews.isSaturday());
                 realmTaskModel.setSunday(schletudeViews.isSunday());
+
                 Calendar calendar = Calendar.getInstance();
                 calendar.add(Calendar.DATE, -1);
                 for(int i = 0; i < daysBetweenDates(deadlineValue); i++) {
@@ -102,13 +103,7 @@ public class NewTaskFragment extends BaseFragment {
                 }
                 realmTaskModel.setRealmTaskHistoryModels(taskHistoryModels);
 
-                if (schletudeViews.isMonday() ||
-                        schletudeViews.isTuesday() ||
-                        schletudeViews.isWednesday() ||
-                        schletudeViews.isThursday() ||
-                        schletudeViews.isFriday() ||
-                        schletudeViews.isSaturday() ||
-                        schletudeViews.isSunday())
+                if (schletudeViews.isMonday() || schletudeViews.isTuesday() || schletudeViews.isWednesday() || schletudeViews.isThursday() || schletudeViews.isFriday() || schletudeViews.isSaturday() || schletudeViews.isSunday())
                     new InsertDataAboutTask().execute();
                 else
                     Toast.makeText(context, getString(R.string.task_new_target_toast_error), Toast.LENGTH_LONG).show();
