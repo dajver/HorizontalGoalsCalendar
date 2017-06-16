@@ -21,18 +21,12 @@ public class SchletudeViews extends LinearLayout {
 
     @BindView(R.id.fixedRadio)
     RadioButton fixedRadio;
-    @BindView(R.id.floatRadio)
-    RadioButton floatRadio;
 
     @BindView(R.id.weeksView)
     WeeksView weeksView;
 
     @BindView(R.id.repeatSpinner)
     Spinner repeatSpinner;
-    @BindView(R.id.eachSpinner)
-    Spinner eachSpinner;
-    @BindView(R.id.quanlitySpinner)
-    Spinner quanlitySpinner;
     @BindView(R.id.deadLine)
     TextView deadLine;
     @BindView(R.id.withoutDeadLine)
@@ -66,10 +60,6 @@ public class SchletudeViews extends LinearLayout {
         return fixedRadio;
     }
 
-    public RadioButton getFloatRadio() {
-        return floatRadio;
-    }
-
     public WeeksView getWeeksView() {
         return weeksView;
     }
@@ -78,20 +68,12 @@ public class SchletudeViews extends LinearLayout {
         return repeatSpinner;
     }
 
-    public Spinner getEachSpinner() {
-        return eachSpinner;
-    }
-
     public TextView getDeadline() {
         return deadLine;
     }
 
     public ImageView getSchletudeQuestion() {
         return schletudeQuestion;
-    }
-
-    public Spinner getQuanlitySpinner() {
-        return quanlitySpinner;
     }
 
     public TextView getWithoutDeadLine() {

@@ -18,10 +18,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="@string/task.new.target.shletude"
                 android:textAllCaps="true"
-                android:id="@+id/textView21" />
+                android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -67,45 +66,6 @@
             </LinearLayout>
 
             <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical">
-
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/task.new.target.float"
-                    android:id="@+id/floatRadio"
-                    android:textColor="@color/dark.gray.text"
-                    android:button="@drawable/radio_selector"
-                    android:paddingLeft="5dp" />
-
-                <Spinner
-                    android:layout_width="75dp"
-                    android:layout_height="40dp"
-                    android:id="@+id/quanlitySpinner"
-                    android:layout_marginLeft="5dp"
-                    android:gravity="center_horizontal" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="@string/task.new.target.each.time"
-                    android:id="@+id/textView25"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:textColor="@color/dark.gray.text" />
-
-                <Spinner
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/eachSpinner"
-                    android:layout_marginLeft="5dp" />
-            </LinearLayout>
-
-            <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -120,11 +80,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
                         android:text="@string/task.new.target.repeat"
-                        android:id="@+id/textView9"
-                        android:textStyle="bold"
-                        android:textColor="@android:color/black" />
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold" />
 
                     <Spinner
                         android:layout_width="75dp"
@@ -136,12 +95,11 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="@string/task.new.target.each.dat"
-                        android:id="@+id/textView28"
                         android:layout_marginLeft="10dp"
-                        android:textStyle="bold"
-                        android:textColor="@android:color/black" />
+                        android:text="@string/task.new.target.each.dat"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -154,11 +112,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
                         android:text="@string/task.new.target.deadline"
-                        android:id="@+id/textView27"
-                        android:textStyle="bold"
-                        android:textColor="@android:color/black" />
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold" />
 
                     <EditText
                         android:layout_width="50dp"
@@ -171,12 +128,11 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="@string/task.new.target.days"
-                        android:id="@+id/textView29"
                         android:layout_marginLeft="10dp"
-                        android:textStyle="bold"
-                        android:textColor="@android:color/black" />
+                        android:text="@string/task.new.target.days"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold" />
 
                     <LinearLayout
                         android:orientation="horizontal"

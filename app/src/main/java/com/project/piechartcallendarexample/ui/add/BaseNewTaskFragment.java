@@ -8,13 +8,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.ToggleButton;
 
 import com.project.piechartcallendarexample.R;
 import com.project.piechartcallendarexample.ui.BaseFragment;
-import com.project.piechartcallendarexample.ui.add.view.ImpactionViews;
 import com.project.piechartcallendarexample.ui.add.view.SchletudeViews;
 import com.project.piechartcallendarexample.ui.calendar.db.TaskController;
 
@@ -34,8 +31,6 @@ import butterknife.ButterKnife;
 
 public class BaseNewTaskFragment extends BaseFragment {
 
-    public static final int PICK_IMAGE = 223;
-    public static final int PICK_FILE_RESULT_CODE = 333;
     public static final int START_DATE = 0;
 
     public static final int SCHLETUDE_TYPE_FIXED = 0;
@@ -56,30 +51,10 @@ public class BaseNewTaskFragment extends BaseFragment {
     public int quanlityValue;
     public View view;;
 
-    @BindView(R.id.notifyTogle)
-    public ToggleButton notifyToogle;
-    @BindView(R.id.timerText)
-    public TextView timerText;
     @BindView(R.id.schletudeView)
     public SchletudeViews schletudeViews;
-    @BindView(R.id.impactionView)
-    public ImpactionViews impactionViews;
     @BindView(R.id.target)
     public EditText target;
-    @BindView(R.id.descriptioEditText)
-    public EditText descriptioEditText;
-    @BindView(R.id.mainPhotoPath)
-    public TextView mainPhotoPath;
-    @BindView(R.id.addFilesImage)
-    public ImageView addFilesImage;
-    @BindView(R.id.addFilesTextView)
-    public TextView addFilesTextView;
-    @BindView(R.id.descriptionQuestion)
-    public ImageView descriptionQuestion;
-    @BindView(R.id.notificationQuestion)
-    public ImageView notificationQuestion;
-    @BindView(R.id.attachQuestion)
-    public ImageView attachQuestion;
 
     public TaskController taskController;
 
@@ -106,36 +81,6 @@ public class BaseNewTaskFragment extends BaseFragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 repeatValue = Integer.valueOf(getResources().getStringArray(R.array.task_repeats)[position]);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> arg0) { }
-        });
-    }
-
-    public void setQuanlitySpinner() {
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.task_quanlity));
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        schletudeViews.getQuanlitySpinner().setAdapter(adapter);
-        schletudeViews.getQuanlitySpinner().setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                quanlityValue = Integer.valueOf(getResources().getStringArray(R.array.task_quanlity)[position]);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> arg0) {}
-        });
-    }
-
-    public void setFloatSpinnerAdapter() {
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.task_float));
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        schletudeViews.getEachSpinner().setAdapter(adapter);
-        schletudeViews.getEachSpinner().setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                onceWeekOrMonth = position;
             }
 
             @Override
