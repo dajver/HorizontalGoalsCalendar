@@ -1,4 +1,4 @@
-package com.project.piechartcallendarexample.ui.calendar.holder;
+package com.project.piechartcallendarexample.ui.calendar.adapter.holder;
 
 import android.view.View;
 import android.widget.TextView;

@@ -14,8 +14,8 @@ import com.project.piechartcallendarexample.R;
 import com.project.piechartcallendarexample.ui.calendar.adapter.model.CalendarModel;
 import com.project.piechartcallendarexample.ui.calendar.db.TaskController;
 import com.project.piechartcallendarexample.ui.calendar.db.model.RealmTaskModel;
-import com.project.piechartcallendarexample.ui.calendar.holder.HeaderHolder;
-import com.project.piechartcallendarexample.ui.calendar.holder.ItemHolder;
+import com.project.piechartcallendarexample.ui.calendar.adapter.holder.HeaderHolder;
+import com.project.piechartcallendarexample.ui.calendar.adapter.holder.ItemHolder;
 import com.project.piechartcallendarexample.ui.calendar.view.ProgressView;
 
 import java.util.ArrayList;
@@ -30,7 +30,6 @@ public class CalendarAdapter extends BaseAdapter {
     private static final int TYPE_HEAD = 0;
     private static final int TYPE_ITEM = 1;
     private static final String DATE_TEMPLATE = "MMMM \nyyyy";
-
 
     private HeaderHolder headHolder;
     private ItemHolder itemHolder;

@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.calendar.CalendarActivity">
+        <activity
+            android:name=".ui.calendar.CalendarActivity"
+            android:label="@string/calendar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -17,7 +19,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.add.NewTaskActivity" />
+        <activity android:name=".ui.add.NewTaskActivity"
+            android:label="@string/add" />
     </application>
 
 </manifest>

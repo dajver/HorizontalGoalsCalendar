@@ -11,10 +11,8 @@ public class RealmTaskModel extends RealmObject {
 
     private int id;
     private String title;
-    private String description;
     private int countDays;
     private int countRepeats;
-    private String typeOfTask;
     private String dateStart;
     private String dateFinish;
     private boolean monday;
@@ -24,13 +22,6 @@ public class RealmTaskModel extends RealmObject {
     private boolean friday;
     private boolean suthurday;
     private boolean sunday;
-    private String notifyEachTime;
-    private boolean notify;
-    private String imagePath;
-    private int schletudeType;
-    private int quanlityValue;
-    private int onceOnWeekOrMonth;
-    private RealmList<RealmFileAttachModel> realmFileAttachModel = new RealmList<>();
     private RealmList<RealmTaskHistoryModel> realmTaskHistoryModels = new RealmList<>();
 
     public int getId() {
@@ -47,14 +38,6 @@ public class RealmTaskModel extends RealmObject {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public String getDateStart() {
@@ -95,14 +78,6 @@ public class RealmTaskModel extends RealmObject {
 
     public void setCountRepeats(int countRepeats) {
         this.countRepeats = countRepeats;
-    }
-
-    public String getTypeOfTask() {
-        return typeOfTask;
-    }
-
-    public void setTypeOfTask(String typeOfTask) {
-        this.typeOfTask = typeOfTask;
     }
 
     public boolean isMonday() {
@@ -159,61 +134,5 @@ public class RealmTaskModel extends RealmObject {
 
     public void setSunday(boolean sunday) {
         this.sunday = sunday;
-    }
-
-    public String getNotifyEachTime() {
-        return notifyEachTime;
-    }
-
-    public void setNotifyEachTime(String notifyEachTime) {
-        this.notifyEachTime = notifyEachTime;
-    }
-
-    public String getImagePath() {
-        return imagePath;
-    }
-
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
-    }
-
-    public RealmList<RealmFileAttachModel> getRealmFileAttachModel() {
-        return realmFileAttachModel;
-    }
-
-    public void setRealmFileAttachModel(RealmList<RealmFileAttachModel> realmFileAttachModel) {
-        this.realmFileAttachModel = realmFileAttachModel;
-    }
-
-    public boolean isNotify() {
-        return notify;
-    }
-
-    public void setNotify(boolean notify) {
-        this.notify = notify;
-    }
-
-    public int getSchletudeType() {
-        return schletudeType;
-    }
-
-    public void setSchletudeType(int schletudeType) {
-        this.schletudeType = schletudeType;
-    }
-
-    public int getQuanlityValue() {
-        return quanlityValue;
-    }
-
-    public void setQuanlityValue(int quanlityValue) {
-        this.quanlityValue = quanlityValue;
-    }
-
-    public int getOnceOnWeekOrMonth() {
-        return onceOnWeekOrMonth;
-    }
-
-    public void setOnceOnWeekOrMonth(int onceOnWeekOrMonth) {
-        this.onceOnWeekOrMonth = onceOnWeekOrMonth;
     }
 }

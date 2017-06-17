@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">Calendar</string>
+    <string name="app_name">Horizontal Goal Calendar</string>
+    <string name="calendar">Calendar</string>
+    <string name="add">Add goal</string>
 
     <string name="task.new.target.mon">MON</string>
     <string name="task.new.target.thu">TUE</string>
