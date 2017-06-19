@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.project.piechartcallendarexample.R;
@@ -101,6 +103,9 @@ public class CalendarAdapter extends BaseAdapter {
     public View getView(final int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = ((Activity) context).getLayoutInflater();
         int type = getItemViewType(position);
+        TableRow.LayoutParams rowParams = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT, 0.1f);
+        TableRow tableRow = new TableRow(context);
+        tableRow.setOrientation(TableLayout.HORIZONTAL);
         switch(type) {
             case TYPE_HEAD:
                 convertView = inflater.inflate(R.layout.item_calendar_days, parent, false);
@@ -112,8 +117,9 @@ public class CalendarAdapter extends BaseAdapter {
                     CalendarDaysView daysView = new CalendarDaysView(context);
                     daysView.setDate(String.valueOf(getDatesInView.get(i).getDay()));
                     daysView.setDayOfWeek(getDatesInView.get(i).getDayOfWeek());
-                    headHolder.daysRow.addView(daysView);
+                    tableRow.addView(daysView, rowParams);
                 }
+                headHolder.daysRow.addView(tableRow);
 
                 headHolder.nextMonth.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -153,8 +159,9 @@ public class CalendarAdapter extends BaseAdapter {
                             onProgressClick(progressView.getProgressView(), model, daysInc, model.getFixDaysList().get(numOfDaysInc).isFixDay(), position);
                         }
                     }
-                    itemHolder.progressRow.addView(progressView);
+                    tableRow.addView(progressView, rowParams);
                 }
+                itemHolder.progressRow.addView(tableRow);
                 break;
         }
         return convertView;

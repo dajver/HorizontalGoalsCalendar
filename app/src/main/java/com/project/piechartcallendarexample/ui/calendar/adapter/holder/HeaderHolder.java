@@ -2,7 +2,7 @@ package com.project.piechartcallendarexample.ui.calendar.adapter.holder;
 
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TableRow;
+import android.widget.TableLayout;
 
 import com.project.piechartcallendarexample.R;
 import com.project.piechartcallendarexample.ui.calendar.view.CapFirstLetterTextView;
@@ -24,7 +24,7 @@ public class HeaderHolder {
     public ImageView nextMonth;
 
     @BindView(R.id.daysRow)
-    public TableRow daysRow;
+    public TableLayout daysRow;
 
     @BindColor(R.color.colorPrimary)
     public int primaryColor;

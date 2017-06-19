@@ -1,7 +1,7 @@
 package com.project.piechartcallendarexample.ui.calendar.adapter.holder;
 
 import android.view.View;
-import android.widget.TableRow;
+import android.widget.TableLayout;
 import android.widget.TextView;
 
 import com.project.piechartcallendarexample.R;
@@ -20,7 +20,7 @@ public class ItemHolder {
     public TextView days;
 
     @BindView(R.id.progressRow)
-    public TableRow progressRow;
+    public TableLayout progressRow;
 
     public ItemHolder(View view){
         ButterKnife.bind(this, view);

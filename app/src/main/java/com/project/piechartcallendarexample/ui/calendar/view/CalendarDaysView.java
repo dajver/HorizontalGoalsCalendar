@@ -39,7 +39,7 @@ public class CalendarDaysView extends LinearLayout {
 
     private void init(Context context) {
         inflate(context, R.layout.view_calendar_days_item, this);
-        setOrientation(VERTICAL);
+        setOrientation(HORIZONTAL);
         ButterKnife.bind(this);
         setup();
     }

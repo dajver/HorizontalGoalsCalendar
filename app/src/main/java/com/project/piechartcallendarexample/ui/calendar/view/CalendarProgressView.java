@@ -39,7 +39,7 @@ public class CalendarProgressView extends LinearLayout {
 
     private void init(Context context) {
         inflate(context, R.layout.view_calendar_progress_item, this);
-        setOrientation(VERTICAL);
+        setOrientation(HORIZONTAL);
         ButterKnife.bind(this);
         setup();
     }

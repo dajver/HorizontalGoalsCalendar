@@ -45,26 +45,11 @@
             </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:orientation="horizontal"
+        <TableLayout
+            android:id="@+id/progressRow"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.1"
-            android:gravity="center_vertical">
-
-            <TableLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical">
-
-                <TableRow
-                    android:id="@+id/progressRow"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                </TableRow>
-            </TableLayout>
-        </LinearLayout>
+            android:orientation="horizontal" />
 
     </LinearLayout>
 

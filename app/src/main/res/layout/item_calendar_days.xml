@@ -36,7 +36,7 @@
                 android:gravity="center_horizontal"
                 android:text="date"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/white"></com.project.piechartcallendarexample.ui.calendar.view.CapFirstLetterTextView>
+                android:textColor="@color/white" />
 
             <ImageView
                 android:id="@+id/nextMonth"
@@ -49,18 +49,10 @@
         </LinearLayout>
 
         <TableLayout
+            android:id="@+id/daysRow"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <TableRow
-                android:id="@+id/daysRow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-            </TableRow>
-        </TableLayout>
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" />
 
     </LinearLayout>
 </LinearLayout>
