@@ -11,11 +11,13 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.project.piechartcallendarexample.R;
+import com.project.piechartcallendarexample.ui.calendar.adapter.holder.HeaderHolder;
+import com.project.piechartcallendarexample.ui.calendar.adapter.holder.ItemHolder;
 import com.project.piechartcallendarexample.ui.calendar.adapter.model.CalendarModel;
 import com.project.piechartcallendarexample.ui.calendar.db.TaskController;
 import com.project.piechartcallendarexample.ui.calendar.db.model.RealmTaskModel;
-import com.project.piechartcallendarexample.ui.calendar.adapter.holder.HeaderHolder;
-import com.project.piechartcallendarexample.ui.calendar.adapter.holder.ItemHolder;
+import com.project.piechartcallendarexample.ui.calendar.view.CalendarDaysView;
+import com.project.piechartcallendarexample.ui.calendar.view.CalendarProgressView;
 import com.project.piechartcallendarexample.ui.calendar.view.ProgressView;
 
 import java.util.ArrayList;
@@ -106,21 +108,12 @@ public class CalendarAdapter extends BaseAdapter {
 
                 headHolder.currentMonth.setFirstCupText(dateFormatter.format(DATE_TEMPLATE, calendar.getTime()));
 
-                headHolder.mondayTw.setText(String.valueOf(getDatesInView.get(0).getDay()));
-                headHolder.thusdayTw.setText(String.valueOf(getDatesInView.get(1).getDay()));
-                headHolder.wednasdayTw.setText(String.valueOf(getDatesInView.get(2).getDay()));
-                headHolder.thursday.setText(String.valueOf(getDatesInView.get(3).getDay()));
-                headHolder.fridayTw.setText(String.valueOf(getDatesInView.get(4).getDay()));
-                headHolder.sutardayTw.setText(String.valueOf(getDatesInView.get(5).getDay()));
-                headHolder.sundayTw.setText(String.valueOf(getDatesInView.get(6).getDay()));
-
-                headHolder.firstDayOfWeek.setText(getDatesInView.get(0).getDayOfWeek());
-                headHolder.secondDayOfWeek.setText(getDatesInView.get(1).getDayOfWeek());
-                headHolder.thirdDayOfWeek.setText(getDatesInView.get(2).getDayOfWeek());
-                headHolder.forthDayOfWeek.setText(getDatesInView.get(3).getDayOfWeek());
-                headHolder.fifthDayOfWeek.setText(getDatesInView.get(4).getDayOfWeek());
-                headHolder.sixthDayOfWeek.setText(getDatesInView.get(5).getDayOfWeek());
-                headHolder.seventhDayOfWeek.setText(getDatesInView.get(6).getDayOfWeek());
+                for(int i = 0; i < 7; i++) {
+                    CalendarDaysView daysView = new CalendarDaysView(context);
+                    daysView.setDate(String.valueOf(getDatesInView.get(i).getDay()));
+                    daysView.setDayOfWeek(getDatesInView.get(i).getDayOfWeek());
+                    headHolder.daysRow.addView(daysView);
+                }
 
                 headHolder.nextMonth.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -152,62 +145,42 @@ public class CalendarAdapter extends BaseAdapter {
                 itemHolder.title.setText(model.getTitle());
                 itemHolder.days.setText(String.format(context.getString(R.string.task_details_times_day), model.getCountRepeats(), model.getCountDays()));
 
-                for(int i = 0; i < (7 + datePosition); i++) {
-                    if (compareDates(getFullDate(0), getRealmDate(position, i))) {
-                        setRepeatsInfo(itemHolder.repeatFirst, model, i, model.isMonday());
-                        onProgressClick(itemHolder.progressView, model, i, model.isMonday(), position);
+                for(int numOfDaysInc = 0; numOfDaysInc < 7; numOfDaysInc++) {
+                    CalendarProgressView progressView = new CalendarProgressView(context);
+                    for (int daysInc = 0; daysInc < (7 + datePosition); daysInc++) {
+                        if (compareDates(getFullDate(numOfDaysInc), getRealmDate(position, daysInc))) {
+                            setRepeatsInfo(progressView.getText(), model, daysInc, model.getFixDaysList().get(numOfDaysInc).isFixDay());
+                            onProgressClick(progressView.getProgressView(), model, daysInc, model.getFixDaysList().get(numOfDaysInc).isFixDay(), position);
+                        }
                     }
-                    if (compareDates(getFullDate(1), getRealmDate(position, i))) {
-                        setRepeatsInfo(itemHolder.repeatSecond, model, i, model.isThuesday());
-                        onProgressClick(itemHolder.progressView2, model, i, model.isThuesday(), position);
-                    }
-                    if (compareDates(getFullDate(2), getRealmDate(position, i))) {
-                        setRepeatsInfo(itemHolder.repeatThird, model, i, model.isWednessday());
-                        onProgressClick(itemHolder.progressView3, model, i, model.isWednessday(), position);
-                    }
-                    if (compareDates(getFullDate(3), getRealmDate(position, i))) {
-                        setRepeatsInfo(itemHolder.repeatForth, model, i, model.isThuersday());
-                        onProgressClick(itemHolder.progressView4, model, i, model.isThuersday(), position);
-                    }
-                    if (compareDates(getFullDate(4), getRealmDate(position, i))) {
-                        setRepeatsInfo(itemHolder.repeatFifth, model, i, model.isFriday());
-                        onProgressClick(itemHolder.progressView5, model, i, model.isFriday(), position);
-                    }
-                    if (compareDates(getFullDate(5), getRealmDate(position, i))) {
-                        setRepeatsInfo(itemHolder.repeatSixth, model, i, model.isSuthurday());
-                        onProgressClick(itemHolder.progressView6, model, i, model.isSuthurday(), position);
-                    }
-                    if (compareDates(getFullDate(6), getRealmDate(position, i))) {
-                        setRepeatsInfo(itemHolder.repeatSeventh, model, i, model.isSunday());
-                        onProgressClick(itemHolder.progressView7, model, i, model.isSunday(), position);
-                    }
+                    itemHolder.progressRow.addView(progressView);
                 }
                 break;
         }
         return convertView;
     }
 
-    private void onProgressClick(ProgressView progressView, final RealmTaskModel model, final int i, boolean isFixed, final int position) {
+    private void onProgressClick(ProgressView progressView, final RealmTaskModel model, final int daysInc, boolean isFixed, final int position) {
         if(isFixed) {
-            progressView.setValue(model.getRealmTaskHistoryModels().get(i).getProgress());
+            progressView.setValue(model.getRealmTaskHistoryModels().get(daysInc).getProgress());
             progressView.setProgressMaximum(model.getCountRepeats());
             progressView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    int progress = model.getRealmTaskHistoryModels().get(i).getProgress() + 1;
-                    int id = model.getRealmTaskHistoryModels().get(i).getId();
+                    int progress = model.getRealmTaskHistoryModels().get(daysInc).getProgress() + 1;
+                    int id = model.getRealmTaskHistoryModels().get(daysInc).getId();
                     if (progress <= model.getCountRepeats())
-                        setProgress(progress, position, i, id);
+                        setProgress(progress, position, daysInc, id);
                     else
-                        setProgress(0, position, i, id);
+                        setProgress(0, position, daysInc, id);
                     notifyDataSetChanged();
                 }
             });
         }
     }
 
-    private void setProgress(int progress, int position, int i, int id) {
-        if (compareDates(getRealmDate(position, i), getCurrentDate()))
+    private void setProgress(int progress, int position, int daysInc, int id) {
+        if (compareDates(getRealmDate(position, daysInc), getCurrentDate()))
             taskController.updateTaskProgress(id, progress);
     }
 

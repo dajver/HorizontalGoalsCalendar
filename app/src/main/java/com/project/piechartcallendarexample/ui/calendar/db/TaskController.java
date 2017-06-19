@@ -2,6 +2,7 @@ package com.project.piechartcallendarexample.ui.calendar.db;
 
 import android.content.Context;
 
+import com.project.piechartcallendarexample.ui.calendar.db.model.RealmBooleanModel;
 import com.project.piechartcallendarexample.ui.calendar.db.model.RealmTaskHistoryModel;
 import com.project.piechartcallendarexample.ui.calendar.db.model.RealmTaskModel;
 
@@ -37,13 +38,8 @@ public class TaskController {
         realmTaskModel.setDateFinish(model.getDateFinish());
         realmTaskModel.setCountDays(model.getCountDays());
         realmTaskModel.setCountRepeats(model.getCountRepeats());
-        realmTaskModel.setMonday(model.isMonday());
-        realmTaskModel.setThuesday(model.isThuesday());
-        realmTaskModel.setWednessday(model.isWednessday());
-        realmTaskModel.setThuersday(model.isThuersday());
-        realmTaskModel.setFriday(model.isFriday());
-        realmTaskModel.setSuthurday(model.isSuthurday());
-        realmTaskModel.setSunday(model.isSunday());
+        for (RealmBooleanModel booleanModel : model.getFixDaysList())
+            realmTaskModel.getFixDaysList().add(booleanModel);
         for (RealmTaskHistoryModel taskHistoryModel : model.getRealmTaskHistoryModels())
             realmTaskModel.getRealmTaskHistoryModels().add(taskHistoryModel);
         realm.commitTransaction();

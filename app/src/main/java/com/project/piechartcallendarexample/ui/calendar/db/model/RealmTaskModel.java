@@ -15,13 +15,7 @@ public class RealmTaskModel extends RealmObject {
     private int countRepeats;
     private String dateStart;
     private String dateFinish;
-    private boolean monday;
-    private boolean thuesday;
-    private boolean wednessday;
-    private boolean thuersday;
-    private boolean friday;
-    private boolean suthurday;
-    private boolean sunday;
+    private RealmList<RealmBooleanModel> fixDaysList;
     private RealmList<RealmTaskHistoryModel> realmTaskHistoryModels = new RealmList<>();
 
     public int getId() {
@@ -80,59 +74,11 @@ public class RealmTaskModel extends RealmObject {
         this.countRepeats = countRepeats;
     }
 
-    public boolean isMonday() {
-        return monday;
+    public RealmList<RealmBooleanModel> getFixDaysList() {
+        return fixDaysList;
     }
 
-    public void setMonday(boolean monday) {
-        this.monday = monday;
-    }
-
-    public boolean isThuesday() {
-        return thuesday;
-    }
-
-    public void setThuesday(boolean thuesday) {
-        this.thuesday = thuesday;
-    }
-
-    public boolean isWednessday() {
-        return wednessday;
-    }
-
-    public void setWednessday(boolean wednessday) {
-        this.wednessday = wednessday;
-    }
-
-    public boolean isThuersday() {
-        return thuersday;
-    }
-
-    public void setThuersday(boolean thuersday) {
-        this.thuersday = thuersday;
-    }
-
-    public boolean isFriday() {
-        return friday;
-    }
-
-    public void setFriday(boolean friday) {
-        this.friday = friday;
-    }
-
-    public boolean isSuthurday() {
-        return suthurday;
-    }
-
-    public void setSuthurday(boolean suthurday) {
-        this.suthurday = suthurday;
-    }
-
-    public boolean isSunday() {
-        return sunday;
-    }
-
-    public void setSunday(boolean sunday) {
-        this.sunday = sunday;
+    public void setFixDaysList(RealmList<RealmBooleanModel> fixDaysList) {
+        this.fixDaysList = fixDaysList;
     }
 }
