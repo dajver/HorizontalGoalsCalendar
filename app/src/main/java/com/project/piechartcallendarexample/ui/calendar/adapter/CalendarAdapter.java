@@ -102,10 +102,11 @@ public class CalendarAdapter extends BaseAdapter {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = ((Activity) context).getLayoutInflater();
-        int type = getItemViewType(position);
         TableRow.LayoutParams rowParams = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT, 0.1f);
         TableRow tableRow = new TableRow(context);
         tableRow.setOrientation(TableLayout.HORIZONTAL);
+
+        int type = getItemViewType(position);
         switch(type) {
             case TYPE_HEAD:
                 convertView = inflater.inflate(R.layout.item_calendar_days, parent, false);

@@ -7,6 +7,7 @@ import java.util.Random;
  */
 
 public class RandomUtils {
+
     public static int getRandomValue() {
         Random rand = new Random();
         return Math.abs(rand.nextInt());
